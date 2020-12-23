@@ -15,12 +15,13 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/QCZJSPEED/main/Task/ziye.q
 
 12.20 优化重写说明,优化时段重写
 12.21 修复boxjs配置错误，钱包ck易掉，故去除
+12.23 去除14天任务显示，增加惊喜福利，视频，福利视频，福利 4个任务
 
 
-⚠️一共5个位置 8个ck  10条 Secrets 
+⚠️一共9个位置 12个ck  14条 Secrets 
 多账号换行
 
-第一步 添加  hostname=mobile.app.autohome.com.cn,pay.autohome.com.cn,openapi.autohome.com.cn,
+第一步 添加  hostname=mobile.app.autohome.com.cn,openapi.autohome.com.cn,
 
 第二步 添加header重写 
 
@@ -31,10 +32,14 @@ GetUserInfoheaderVal 👉QCZJ_GetUserInfoHEADER
 
 第三步 注释header重写，添加body重写 添加时段body重写  获取完后注释
 
-点击 活动 获取账户信息 签到任务 活动body
+点击 活动 获取账户信息 日常任务 活动body
+
+
+
 coinbodyVal          👉  QCZJ_coinBODY
 taskbodyVal          👉  QCZJ_taskBODY
 activitybodyVal      👉  QCZJ_activityBODY
+
 
 点击 首页>>右上角 获取时段 时段翻倍 body
 addCoinbodyVal       👉  addCoinBODY
@@ -42,10 +47,28 @@ addCoin2bodyVal      👉  addCoin2BODY
 
 点击 活动>>分享赚现金 自己助力自己 获取助力任务header  body 
 reportAssheaderVal   👉  reportAssHEADER
-reportAssbodyVal   👉  reportAssBODY
+reportAssbodyVal     👉  reportAssBODY
 
 点击 活动>>现金收入>>提现>>立即提现 获取提现body
 cointowalletbodyVal  👉  cointowalletBODY
+
+
+⚠️⚠️⚠️以上CK全部获取完以后，添加时段body重写，去boxjs里设置ins的值，再按操作获取body
+
+设置ins = 1
+点击 活动 右上角领惊喜福利 获取惊喜福利body
+设置ins = 2
+点击 活动 看视频领金币 获取视频body
+设置ins = 3
+点击 活动 观看福利视频 获取福利视频body
+设置ins = 4
+点击 活动 领取福利 获取福利body
+
+
+GoldcoinbodyVal      👉  QCZJ_GoldcoinBODY
+videobodyVal         👉  QCZJ_videoBODY
+WelfarevideobodyVal👉QCZJ_WelfarevideoBODY
+WelfarebodyVal       👉  QCZJ_WelfareBODY
 
 
 ⚠️主机名以及重写👇
@@ -59,7 +82,7 @@ https:\/\/(mobile\.app\.autohome\.com\.cn\/*||openapi\.autohome\.com\.cn\/*) url
 https:\/\/(mobile\.app\.autohome\.com\.cn\/*||openapi\.autohome\.com\.cn\/*) url script-request-body https://raw.githubusercontent.com/ziye12/QCZJSPEED/master/Task/qczjspeed.js
 
 #汽车之家极速版获取时段body
-http:\/\/mobile\.app\.autohome\.com\.cn\/fasthome\/mainpagecoin\/addCoin url script-request-body https://raw.githubusercontent.com/ziye12/QCZJSPEED/master/Task/qczjspeed.js
+http:\/\/mobile\.app\.autohome\.com\.cn\/* url script-request-body https://raw.githubusercontent.com/ziye12/QCZJSPEED/master/Task/qczjspeed.js
 
 
 
@@ -72,7 +95,7 @@ http-request (mobile\.app\.autohome\.com\.cn\/*||openapi\.autohome\.com\.cn\/*) 
 http-request (mobile\.app\.autohome\.com\.cn\/*||openapi\.autohome\.com\.cn\/*) script-path=https://raw.githubusercontent.com/ziye12/QCZJSPEED/master/Task/qczjspeed.js,requires-body=true, tag=汽车之家极速版获取body
 
 #汽车之家极速版获取时段body
-http:\/\/mobile\.app\.autohome\.com\.cn\/fasthome\/mainpagecoin\/addCoin script-path=https://raw.githubusercontent.com/ziye12/QCZJSPEED/master/Task/qczjspeed.js,requires-body=true, tag=汽车之家极速版获取时段body
+http:\/\/mobile\.app\.autohome\.com\.cn\/* script-path=https://raw.githubusercontent.com/ziye12/QCZJSPEED/master/Task/qczjspeed.js,requires-body=true, tag=汽车之家极速版获取时段body
 
 
 ############## surge
@@ -84,9 +107,9 @@ http:\/\/mobile\.app\.autohome\.com\.cn\/fasthome\/mainpagecoin\/addCoin script-
 汽车之家极速版获取header = type=http-request,pattern=(mobile\.app\.autohome\.com\.cn\/*||openapi\.autohome\.com\.cn\/*),script-path=https://raw.githubusercontent.com/ziye12/QCZJSPEED/master/Task/qczjspeed.js, 
 
 #汽车之家极速版获取时段body
-汽车之家极速版获取时段body = type=http-request,pattern=http:\/\/mobile\.app\.autohome\.com\.cn\/fasthome\/mainpagecoin\/addCoin,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/ziye12/QCZJSPEED/master/Task/qczjspeed.js, script-update-interval=0
+汽车之家极速版获取时段body = type=http-request,pattern=http:\/\/mobile\.app\.autohome\.com\.cn\/*,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/ziye12/QCZJSPEED/master/Task/qczjspeed.js, script-update-interval=0
 
-
+  "Goldcoinbody",  "videobody", "Welfarevideobody", "Welfarebody", 
 
 */
 
@@ -100,6 +123,8 @@ let COOKIES_SPLIT = "\n"; // 自定义多cookie之间连接的分隔符，默认
 const logs = 0; // 0为关闭日志，1为开启
 const notifyInterval = 1;// 0为关闭通知，1为所有通知，
 const cointowalletid = 0.5;//提现金额
+const ins = $.getval('qczjIns'); // ⚠️0不获取，1获取惊喜福利body，2获取视频body,3获取福利视频body,4获取福利body
+
 
 $.message = '';
 
@@ -118,6 +143,18 @@ let middletaskBODY = [];
 const activitybodyArr = [];
 let activitybodyVal = "";
 let middleactivityBODY = [];
+const GoldcoinbodyArr = [];
+let GoldcoinbodyVal = "";
+let middleGoldcoinBODY = [];
+const videobodyArr = [];
+let videobodyVal = "";
+let middlevideoBODY = [];
+const WelfarevideobodyArr = [];
+let WelfarevideobodyVal = "";
+let middleWelfarevideoBODY = [];
+const WelfarebodyArr = [];
+let WelfarebodyVal = "";
+let middleWelfareBODY = [];
 const addCoinbodyArr = [];
 let addCoinbodyVal = "";
 let middleaddCoinBODY = [];
@@ -133,6 +170,14 @@ let middlereportAssHEADER = [];
 const cointowalletbodyArr = [];
 let cointowalletbodyVal = "";
 let middlecointowalletBODY = [];
+
+
+
+
+
+
+
+
 
 if ($.isNode()) {
   if (process.env.COOKIES_SPLIT) {
@@ -182,7 +227,39 @@ if ($.isNode()) {
     middleactivityBODY = process.env.QCZJ_activityBODY.split(COOKIES_SPLIT);
   } else {
     middleactivityBODY = process.env.QCZJ_activityBODY.split();
-  }    
+  }
+    if (
+    process.env.QCZJ_GoldcoinBODY &&
+    process.env.QCZJ_GoldcoinBODY.indexOf(COOKIES_SPLIT) > -1
+  ) {
+    middleGoldcoinBODY = process.env.QCZJ_GoldcoinBODY.split(COOKIES_SPLIT);
+  } else {
+    middleGoldcoinBODY = process.env.QCZJ_GoldcoinBODY.split();
+  }
+    if (
+    process.env.QCZJ_videoBODY &&
+    process.env.QCZJ_videoBODY.indexOf(COOKIES_SPLIT) > -1
+  ) {
+    middlevideoBODY = process.env.QCZJ_videoBODY.split(COOKIES_SPLIT);
+  } else {
+    middlevideoBODY = process.env.QCZJ_videoBODY.split();
+  }
+    if (
+    process.env.QCZJ_WelfarevideoBODY &&
+    process.env.QCZJ_WelfarevideoBODY.indexOf(COOKIES_SPLIT) > -1
+  ) {
+    middleWelfarevideoBODY = process.env.QCZJ_WelfarevideoBODY.split(COOKIES_SPLIT);
+  } else {
+    middleWelfarevideoBODY = process.env.QCZJ_WelfarevideoBODY.split();
+  }
+    if (
+    process.env.QCZJ_WelfareBODY &&
+    process.env.QCZJ_WelfareBODY.indexOf(COOKIES_SPLIT) > -1
+  ) {
+    middleWelfareBODY = process.env.QCZJ_WelfareBODY.split(COOKIES_SPLIT);
+  } else {
+    middleWelfareBODY = process.env.QCZJ_WelfareBODY.split();
+  }
     if (
     process.env.QCZJ_addCoinBODY &&
     process.env.QCZJ_addCoinBODY.indexOf(COOKIES_SPLIT) > -1
@@ -224,6 +301,7 @@ if ($.isNode()) {
     middlecointowalletBODY = process.env.QCZJ_cointowalletBODY.split();
   } 
 }
+
 if ($.isNode()) {
   Object.keys(middleGetUserInfoURL).forEach((item) => {
     if (middleGetUserInfoURL[item]) {
@@ -249,7 +327,27 @@ if ($.isNode()) {
     if (middleactivityBODY[item]) {
       activitybodyArr.push(middleactivityBODY[item]);
     }
-  });
+  });  
+  Object.keys(middleGoldcoinBODY).forEach((item) => {
+    if (middleGoldcoinBODY[item]) {
+      GoldcoinbodyArr.push(middleGoldcoinBODY[item]);
+    }
+  });    
+  Object.keys(middlevideoBODY).forEach((item) => {
+    if (middlevideoBODY[item]) {
+      videobodyArr.push(middlevideoBODY[item]);
+    }
+  });  
+  Object.keys(middleWelfarevideoBODY).forEach((item) => {
+    if (middleWelfarevideoBODY[item]) {
+      WelfarevideobodyArr.push(middleWelfarevideoBODY[item]);
+    }
+  });   
+  Object.keys(middleWelfareBODY).forEach((item) => {
+    if (middleWelfareBODY[item]) {
+      WelfarebodyArr.push(middleWelfareBODY[item]);
+    }
+  });    
   Object.keys(middleaddCoinBODY).forEach((item) => {
     if (middleaddCoinBODY[item]) {
       addCoinbodyArr.push(middleaddCoinBODY[item]);
@@ -281,6 +379,10 @@ if ($.isNode()) {
   coinbodyArr.push($.getdata("coinbody"));
   taskbodyArr.push($.getdata("taskbody"));
   activitybodyArr.push($.getdata("activitybody"));
+  GoldcoinbodyArr.push($.getdata("Goldcoinbody"));  
+  videobodyArr.push($.getdata("videobody"));  
+  WelfarevideobodyArr.push($.getdata("Welfarevideobody"));  
+  WelfarebodyArr.push($.getdata("Welfarebody"));  
   addCoinbodyArr.push($.getdata("addCoinbody"));
   addCoin2bodyArr.push($.getdata("addCoin2body"));    
   reportAssbodyArr.push($.getdata("reportAssbody")); 
@@ -295,6 +397,10 @@ if ($.isNode()) {
   coinbodyArr.push($.getdata(`coinbody${i}`));
   taskbodyArr.push($.getdata(`taskbody${i}`));
   activitybodyArr.push($.getdata(`activitybody${i}`));
+  GoldcoinbodyArr.push($.getdata(`Goldcoinbody${i}`));  
+  videobodyArr.push($.getdata(`videobody${i}`));  
+  WelfarevideobodyArr.push($.getdata(`Welfarevideobody${i}`));  
+  WelfarebodyArr.push($.getdata(`Welfarebody${i}`));    
   addCoinbodyArr.push($.getdata(`addCoinbody${i}`));
   addCoin2bodyArr.push($.getdata(`addCoin2body${i}`));    
   reportAssbodyArr.push($.getdata(`reportAssbody${i}`)); 
@@ -303,6 +409,7 @@ if ($.isNode()) {
     }
   }
 }
+
 
 function GetCookie() {
 //用户名
@@ -329,14 +436,14 @@ if ($request && $request.url.indexOf("init") >= 0&& $request.url.indexOf("coin")
     );
     $.msg($.name + $.idx, `获取账户信息body: 成功🎉`, ``);
     } 
-//签到任务
+//日常任务
 if ($request && $request.url.indexOf("init") >= 0&& $request.url.indexOf("task") >= 0&&$request.body.indexOf("model=1")>=0) {
     const taskbodyVal = $request.body;
     if (taskbodyVal) $.setdata(taskbodyVal, "taskbody" + $.idx);
     $.log(
-      `[${$.name + $.idx}] 获取签到任务body✅: 成功,taskbodyVal: ${taskbodyVal}`
+      `[${$.name + $.idx}] 获取日常任务body✅: 成功,taskbodyVal: ${taskbodyVal}`
     );
-    $.msg($.name + $.idx, `获取签到任务body: 成功🎉`, ``);
+    $.msg($.name + $.idx, `获取日常任务body: 成功🎉`, ``);
     } 
 //活动
 if ($request && $request.url.indexOf("activity") >= 0&&$request.body.indexOf("pm=1")>=0)  {
@@ -347,6 +454,40 @@ if ($request && $request.url.indexOf("activity") >= 0&&$request.body.indexOf("pm
     );
     $.msg($.name + $.idx, `获取活动body: 成功🎉`, ``);
     } 
+
+//惊喜福利 视频 福利视频 福利
+if ($request && $request.url.indexOf("addRewardLog") >= 0&&$request.body.indexOf("pm=1")>=0)  {
+if (ins==1) {
+    const GoldcoinbodyVal = $request.body;
+    if (GoldcoinbodyVal) $.setdata(GoldcoinbodyVal, "Goldcoinbody" + $.idx);
+    $.log(
+      `[${$.name + $.idx}] 获取惊喜福利body✅: 成功,GoldcoinbodyVal: ${GoldcoinbodyVal}`
+    );
+    $.msg($.name + $.idx, `获取惊喜福利body: 成功🎉`, ``);
+	 }if (ins==2) {
+	const videobodyVal = $request.body;
+    if (videobodyVal) $.setdata(videobodyVal, "videobody" + $.idx);
+    $.log(
+      `[${$.name + $.idx}] 获取视频body✅: 成功,videobodyVal: ${videobodyVal}`
+    );
+    $.msg($.name + $.idx, `获取视频body: 成功🎉`, ``);
+	 } if (ins==3) {  
+    const WelfarevideobodyVal = $request.body;
+    if (WelfarevideobodyVal) $.setdata(WelfarevideobodyVal, "Welfarevideobody" + $.idx);
+    $.log(
+      `[${$.name + $.idx}] 获取福利视频body✅: 成功,WelfarevideobodyVal: ${WelfarevideobodyVal}`
+    );
+    $.msg($.name + $.idx, `获取福利视频body: 成功🎉`, ``);	
+	 } if (ins==4) {
+    const WelfarebodyVal = $request.body;
+    if (WelfarebodyVal) $.setdata(WelfarebodyVal, "Welfarebody" + $.idx);
+    $.log(
+      `[${$.name + $.idx}] 获取福利body✅: 成功,WelfarebodyVal: ${WelfarebodyVal}`
+    );
+    $.msg($.name + $.idx, `获取福利body: 成功🎉`, ``);
+    } 	
+
+	}	
 //时段任务
  if ($request &&$request.body.indexOf("moreflag=0")>=0 ){
     const addCoinbodyVal = $request.body;
@@ -426,6 +567,10 @@ if (!GetUserInfourlArr[0]) {
   coinbodyVal = coinbodyArr[i];
   taskbodyVal = taskbodyArr[i];	  
   activitybodyVal = activitybodyArr[i];
+  GoldcoinbodyVal = GoldcoinbodyArr[i];
+  videobodyVal = videobodyArr[i];
+  WelfarevideobodyVal = WelfarevideobodyArr[i];
+  WelfarebodyVal = WelfarebodyArr[i];
   addCoinbodyVal = addCoinbodyArr[i];
   addCoin2bodyVal = addCoin2bodyArr[i];
   reportAssheaderVal = reportAssheaderArr[i];
@@ -436,6 +581,10 @@ if (!GetUserInfourlArr[0]) {
       await coin();
       await task();
       await activity();
+	  await Goldcoin();
+	  await video();
+	  await Welfarevideo();
+	  await Welfare();
       await addCoin();
       await addCoin2();
       await reportAss();
@@ -490,7 +639,7 @@ function coin(timeout = 0) {
     },timeout)
   })
 }
-//签到任务
+//日常任务
 function task(timeout = 0) {
   return new Promise((resolve) => {
     setTimeout( ()=>{
@@ -501,11 +650,14 @@ function task(timeout = 0) {
       }
       $.post(url, async(err, resp, data) => {
         try {
-          if (logs) $.log(`${$.name}, 签到任务🚩: ${data}`);
+          if (logs) $.log(`${$.name}, 日常任务🚩: ${data}`);
           $.task = JSON.parse(data);
 let taskinfo=$.task.result.list[1].tasklist
-  $.message += '【'+taskinfo[taskinfo.length-1].title+'】：奖励'+taskinfo[taskinfo.length-1].tiptxt+'，进度'+taskinfo[taskinfo.length-1].step+'\n';
-
+  $.message +=  
+  '【'+taskinfo[1].title+'】：奖励'+taskinfo[1].tiptxt+'，进度'+taskinfo[1].step+'\n'+
+  '【'+taskinfo[6].title+'】：奖励'+taskinfo[6].tiptxt+'，进度'+taskinfo[6].step+'\n'+
+  '【'+taskinfo[7].title+'】：奖励'+taskinfo[7].tiptxt+'\n'+
+  '【'+taskinfo[9].title+'】：奖励'+taskinfo[9].tiptxt+'，进度'+taskinfo[9].step+'\n';
         } catch (e) {
           $.logErr(e, resp);
         } finally {
@@ -528,11 +680,11 @@ function activity(timeout = 0) {
         try {
           if (logs) $.log(`${$.name}, 活动🚩: ${data}`);
           $.activity = JSON.parse(data);
-let activitydex=$.activity.result.list
+  let activitydex=$.activity.result.list
   let activityxyz=activitydex[1].data.activitycard.headdata
   let activityabc=activitydex[1].data.activitycard.currenttask
   let activitydef=activitydex[1].data.activitycard.activityinfo
-  $.message +='【'+$.activity.result.title+'】：已连续签到'+activitydex[0].data.signdaycount+'天，今日签到奖励'+activitydex[0].data.signlist[activitydex[0].data.signdaycount-1].prize+'金币'+'\n'+'【现金福利】：'+activityxyz.title+','+activityxyz.detaillist[0].rewardname+activityxyz.detaillist[0].rewardamount+','+activityxyz.detaillist[0].rewarddate+'\n'+'【'+activityabc.title+'】：'+activityabc.tasktarget+'\n'+'【任务进度】：'+activitydef.now+'/'+activitydef.total+'\n'+'【任务奖池】：'+activityxyz.incomedesc+'元\n'
+  $.message +='【'+$.activity.result.title+'】：已连续签到'+activitydex[0].data.signdaycount+'天，今日签到奖励'+activitydex[0].data.signlist[activitydex[0].data.signdaycount-1].prize+'金币'+'\n'
   
         } catch (e) {
           $.logErr(e, resp);
@@ -543,6 +695,113 @@ let activitydex=$.activity.result.list
     },timeout)
   })
 }
+//惊喜福利
+function Goldcoin(timeout = 0) {
+  return new Promise((resolve) => {
+    setTimeout( ()=>{	 		
+      let url = {
+        url: `https://mobile.app.autohome.com.cn/fasthome/invite/addRewardLog`,
+        headers: JSON.parse(GetUserInfoheaderVal),
+		body: GoldcoinbodyVal,
+      }
+      $.post(url, async(err, resp, data) => {
+        try {
+          if (logs) $.log(`${$.name}, 惊喜福利🚩: ${data}`);
+          $.Goldcoin = JSON.parse(data);
+if($.Goldcoin.result.fk_flag==0)
+      $.message +='【惊喜福利】：成功领取'+$.Goldcoin.result.rewardCoin+'金币\n';
+        } catch (e) {
+          $.logErr(e, resp);
+        } finally {
+          resolve()
+        }
+      })
+    },timeout)
+  })
+}
+//视频
+function video(timeout = 0) {
+  return new Promise((resolve) => {
+    setTimeout( ()=>{	 		
+      let url = {
+        url: `https://mobile.app.autohome.com.cn/fasthome/invite/addRewardLog`,
+        headers: JSON.parse(GetUserInfoheaderVal),
+		body: videobodyVal,
+      }
+      $.post(url, async(err, resp, data) => {
+        try {
+          if (logs) $.log(`${$.name}, 视频🚩: ${data}`);
+          $.video = JSON.parse(data);
+if($.video.result.fk_flag&&$.video.result.addedCoin==0){
+      $.message +='【视频】：成功领取'+$.video.result.rewardCoin+'金币\n'}
+else if($.video.result.fk_flag&&$.video.result.addedCoin!=0){
+      $.message +='【视频】：成功领取'+$.video.result.rewardCoin+'金币,'+$.video.result.nextAddedText+'\n';}	  	  
+	          } catch (e) {
+          $.logErr(e, resp);
+        } finally {
+          resolve()
+        }
+      })
+    },timeout)
+  })
+}
+
+
+//福利视频
+function Welfarevideo(timeout = 0) {
+  return new Promise((resolve) => {
+    setTimeout( ()=>{	 		
+      let url = {
+        url: `https://mobile.app.autohome.com.cn/fasthome/invite/addRewardLog`,
+        headers: JSON.parse(GetUserInfoheaderVal),
+		body: WelfarevideobodyVal,
+      }
+      $.post(url, async(err, resp, data) => {
+        try {
+          if (logs) $.log(`${$.name}, 福利视频🚩: ${data}`);
+          $.Welfarevideo = JSON.parse(data);
+if($.Welfarevideo.result.rewardCash)
+      $.message +='【福利视频】：成功领取'+$.Welfarevideo.result.rewardCoin+'金币\n';
+ if($.Welfarevideo.result.finish)
+      $.message +='【福利视频】：已全部领取完毕\n';
+        } catch (e) {
+          $.logErr(e, resp);
+        } finally {
+          resolve()
+        }
+      })
+    },timeout)
+  })
+}
+
+//福利
+function Welfare(timeout = 0) {
+  return new Promise((resolve) => {
+    setTimeout( ()=>{	 		
+      let url = {
+        url: `https://mobile.app.autohome.com.cn/fasthome/invite/addRewardLog`,
+        headers: JSON.parse(GetUserInfoheaderVal),
+		body: WelfarebodyVal,
+      }
+      $.post(url, async(err, resp, data) => {
+        try {
+          if (logs) $.log(`${$.name}, 福利🚩: ${data}`);
+          $.Welfare = JSON.parse(data);
+if($.Welfare.result.rewardCoin){
+      $.message +='【福利】：成功领取'+$.Welfare.result.rewardCoin+'金币\n'}
+else if($.Welfare.returncode!=0)
+      $.message +='【福利】：'+$.Welfare.message+'\n';	  
+        } catch (e) {
+          $.logErr(e, resp);
+        } finally {
+          resolve()
+        }
+      })
+    },timeout)
+  })
+}
+
+
 //时段任务
 function addCoin(timeout = 0) {
   return new Promise((resolve) => {
@@ -557,7 +816,7 @@ function addCoin(timeout = 0) {
           if (logs) $.log(`${$.name}, 时段任务🚩: ${data}`);
           $.addCoin = JSON.parse(data);
 if($.addCoin.returncode==0)
-      $.message +='【时段奖励】：'+$.addCoin.result.getcoinnum+'金币\n';
+      $.message +='【时段奖励】：成功领取'+$.addCoin.result.getcoinnum+'金币\n';
         } catch (e) {
           $.logErr(e, resp);
         } finally {
@@ -581,7 +840,7 @@ function addCoin2(timeout = 1000) {
           if (logs) $.log(`${$.name}, 时段翻倍🚩: ${data}`);
           $.addCoin2 = JSON.parse(data);
 if($.addCoin2.returncode==0)
-       $.message +='【时段翻倍】：'+$.addCoin2.result.getcoinnum+'金币\n';
+       $.message +='【时段翻倍】：成功领取'+$.addCoin2.result.getcoinnum+'金币\n';
         } catch (e) {
           $.logErr(e, resp);
         } finally {
