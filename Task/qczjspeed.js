@@ -123,7 +123,7 @@ let COOKIES_SPLIT = "\n"; // 自定义多cookie之间连接的分隔符，默认
 
 const logs = 0; // 0为关闭日志，1为开启
 const notifyInterval = 1;// 0为关闭通知，1为所有通知，
-const cointowalletid = 0.5;//提现金额
+const cointowalletid = 5;//提现金额
 const ins = $.getval('qczjIns'); // ⚠️0不获取，1获取惊喜福利body，2获取视频body,3获取福利视频body,4获取福利body
 
 let gksp,flsp,lqfl;
