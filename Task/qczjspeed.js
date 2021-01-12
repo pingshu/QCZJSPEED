@@ -840,9 +840,9 @@ function video(timeout = 0) {
         try {
           if (logs) $.log(`${O}, 视频🚩: ${data}`);
           $.video = JSON.parse(data);
-if($.video.result.fk_flag&&$.video.result.addedCoin==0){
+if($.video.result&&$.video.result.fk_flag&&$.video.result.addedCoin==0){
       $.message +='【视频】：成功领取'+$.video.result.rewardCoin+'金币\n'}
-else if($.video.result.fk_flag&&$.video.result.addedCoin!=0){
+else if($.video.result&&$.video.result.fk_flag&&$.video.result.addedCoin!=0){
       $.message +='【视频】：成功领取'+$.video.result.rewardCoin+'金币,'+$.video.result.nextAddedText+'\n';}	  	  
 	          } catch (e) {
           $.logErr(e, resp);
