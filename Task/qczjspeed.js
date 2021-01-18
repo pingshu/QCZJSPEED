@@ -21,6 +21,7 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/QCZJSPEED/main/Task/ziye.q
 1.12  修复判定错误
 1.13 4个任务失效，故去除,精简ck,只需要5个，无需重新获取，调整提现时间为20点到21点
 1.15 修复ck报错问题
+1.17 修复任务模块报错导致的 助力问题
 
 ⚠️一共3个位置 5个ck  👉 6条 Secrets 
 多账号换行
@@ -361,10 +362,8 @@ tts = Math.round(new Date().getTime() +
       await coin();//账户信息    
       await task();//日常任务
       await activity();//活动
-	  if ($.task.result && fx.status != 2) {
       await reportAss();//助力任务
       await reportAss2();//助力任务2 	  
-	  }
       await addCoin();//时段任务
       await addCoin2();//时段翻倍
 	  if (nowTimes.getHours() >= 20 && (nowTimes.getMinutes() >= 0 && nowTimes.getMinutes() <= 59)) {
